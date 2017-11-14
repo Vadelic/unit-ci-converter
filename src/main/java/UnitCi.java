@@ -2,9 +2,9 @@
  * Created by Komyshenets on 14.11.2017.
  */
 public class UnitCi {
-    public long value;
-    public String name = "";
-    public UnitCi.Prefix prefix;
+    private long value;
+    private String name;
+    private UnitCi.Prefix prefix;
 
     public UnitCi(long value, Prefix prefix, String name) {
         this.value = value;
@@ -20,9 +20,13 @@ public class UnitCi {
         if (prefix == null)
             return value;
         else {
-            return value * this.prefix.getCoef() / prefix.getCoef();
+            return value * this.prefix.getRatio() / prefix.getRatio();
         }
 
+    }
+
+    public String getName() {
+        return name;
     }
 
     public enum Prefix {
@@ -35,20 +39,21 @@ public class UnitCi {
         CENTI("centi", -2),
         MILLI("milli", -3);
 
-        String name;
-        int coef;
+        private String name;
+        private int ratio;
 
         Prefix(String name, int i) {
             this.name = name;
-            this.coef = i;
+            this.ratio = i;
         }
 
         public String getName() {
             return name;
         }
 
-        public double getCoef() {
-            return Math.pow(10, coef);
+        public double getRatio() {
+            return Math.pow(10, ratio);
         }
+
     }
 }

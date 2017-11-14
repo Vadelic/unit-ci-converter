@@ -3,18 +3,18 @@
  */
 public class Temperature {
 
-    public long value;
-    public Value prefix;
+    private long value;
+    private Value prefix;
 
     public Temperature(long value, Value prefix) {
         this.value = value;
         this.prefix = prefix;
     }
 
-    public double convert(Value prefix) {
-        if (this.prefix == prefix) return value;
+    public double convert(Value postfix) {
+        if (this.prefix == postfix) return value;
         double celsi = convertToC();
-        switch (prefix.coef) {
+        switch (postfix.getIndex()) {
             case 1:
                 return celsi;
             case 2:
@@ -25,15 +25,14 @@ public class Temperature {
         return value;
     }
 
-    public double convertToC() {
+    private double convertToC() {
 
-        switch (this.prefix.coef) {
+        switch (this.prefix.getIndex()) {
             case 1:
                 return value;
             case 2:
                 return (value - 32) / 1.8;
             case 3:
-
                 return value - 273.15;
         }
         return value;
@@ -42,25 +41,25 @@ public class Temperature {
 
     public enum Value {
 
-        C("C", 1),
-        F("F", 2),
-        K("K", 3);
+        CELSI("C", 1),
+        FARINGATE("F", 2),
+        KELVIN("KELVIN", 3);
 
 
-        String name;
-        int coef;
+        private String name;
+        private int index;
 
         Value(String name, int i) {
             this.name = name;
-            this.coef = i;
+            this.index = i;
         }
 
         public String getName() {
             return name;
         }
 
-        public double getCoef() {
-            return Math.pow(10, coef);
+        public int getIndex() {
+            return index;
         }
     }
 
