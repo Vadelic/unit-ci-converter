@@ -3,10 +3,10 @@
  */
 public class Temperature {
 
-    public long value;
+    public double value;
     public Value prefix;
 
-    public Temperature(long value, Value prefix) {
+    public Temperature(double value, Value prefix) {
         this.value = value;
         this.prefix = prefix;
     }
