@@ -13,18 +13,32 @@ public class Temperature {
 
     public double convert(Value prefix) {
         if (this.prefix == prefix) return value;
-
+        double celsi = convertToC();
         switch (prefix.coef) {
             case 1:
-                return (value - 32) / 1.8;
+                return (celsi - 32) / 1.8;
             case 2:
-                return (value * 1.8) + 32;
+                return (celsi * 1.8) + 32;
             case 3:
-                double convert = this.convert(Value.C);
-                return convert + 273.15;
+                return celsi + 273.15;
         }
         return value;
     }
+
+    public double convertToC() {
+
+        switch (this.prefix.coef) {
+            case 1:
+                return value;
+            case 2:
+                return (value - 32) / 1.8;
+            case 3:
+
+                return value - 273.15;
+        }
+        return value;
+    }
+
 
     public enum Value {
 
