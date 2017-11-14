@@ -16,7 +16,7 @@ public class Temperature {
         double celsi = convertToC();
         switch (prefix.coef) {
             case 1:
-                return (celsi - 32) / 1.8;
+                return celsi;
             case 2:
                 return (celsi * 1.8) + 32;
             case 3:
