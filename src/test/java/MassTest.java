@@ -18,9 +18,9 @@ public class MassTest {
     }
 
     void convertTemp() {
-        Temperature temperature = new Temperature(10, Temperature.Value.CELSI);
-        double convertToF = temperature.convert(Temperature.Value.FARINGATE);
-        double convertToK = temperature.convert(Temperature.Value.KELVIN);
+        Temperature temperature = new Temperature(10, Temperature.Value.C);
+        double convertToF = temperature.convert(Temperature.Value.F);
+        double convertToK = temperature.convert(Temperature.Value.C);
 
     
 
